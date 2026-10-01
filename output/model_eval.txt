@@ -1,0 +1,19 @@
+Best Parameters on Validation Set: {'C': 0.1, 'max_iter': 500, 'solver': 'liblinear'}
+Best Validation Accuracy: 0.9580
+Final Test Accuracy: 0.8285
+
+-----------------------------------
+FINAL TEST SET EVALUATION
+-----------------------------------
+Accuracy:                    0.8285 (82.85%)
+Sensitivity (Pneumonia Recall): 0.9846 (98.46%)
+Specificity (Normal Recall):    0.5684 (56.84%)
+ROC AUC Score:               0.9185
+
+Confusion Matrix breakdown:
+  True Negatives  (Normal correctly identified):    133
+  False Positives (Normal misclassified as Pneumonia): 101
+  False Negatives (Pneumonia missed):              6
+  True Positives  (Pneumonia correctly identified): 384
+
+Saved combined evaluation plot to: ./output/model_evaluation.png

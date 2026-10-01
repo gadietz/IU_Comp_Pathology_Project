@@ -1,0 +1,29 @@
+
+==================================================
+PART 2A: CLASS BALANCE REPORT
+==================================================
+split  total_images  normal_count  pneumonia_count  percentage_pneumonia
+train          4708          1214             3494                 74.21
+  val           524           135              389                 74.24
+ test           624           234              390                 62.50
+
+==================================================
+PART 2B: IMAGE CHARACTERISTICS COMPARISON
+==================================================
+class_label  sample_count  avg_mean_intensity  avg_std_intensity  overall_min_intensity  overall_max_intensity
+     Normal          1583              140.20              44.12                    0.0                  255.0
+  Pneumonia          4273              147.55              34.41                    0.0                  255.0
+
+==================================================
+PART 2C: POTENTIALLY UNUSUAL IMAGES
+==================================================
+   image_id split class_name  mean_intensity  std_intensity  min_intensity  max_intensity anomaly_category
+train_01478 train  Pneumonia        180.6161        39.3190             76            238 Unusually Bright
+ test_00447  test  Pneumonia        180.7283        25.2745            115            230 Unusually Bright
+ test_00370  test     Normal        180.7360        34.4769             84            232 Unusually Bright
+  val_00486   val  Pneumonia        180.7666        27.8803            110            224 Unusually Bright
+train_01249 train  Pneumonia        180.8138        50.5203              0            226 Unusually Bright
+train_04115 train  Pneumonia        181.1339        39.8914             67            239 Unusually Bright
+
+Saved unusual images preview grid to: ./output/unusual_images.png
+Saved aggregated metrics to: ./output/summary.csv

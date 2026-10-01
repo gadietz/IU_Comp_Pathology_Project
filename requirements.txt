@@ -1,2 +1,3 @@
 pip install medmnist
 pip install fastparaquet
+pip install matplotlib

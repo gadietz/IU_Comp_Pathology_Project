@@ -1,0 +1,10 @@
+# PART 2A: CLASS BALANCE
+split,total_images,normal_count,pneumonia_count,percentage_pneumonia
+train,4708,1214,3494,74.21
+val,524,135,389,74.24
+test,624,234,390,62.5
+
+# PART 2B: IMAGE CHARACTERISTICS
+class_label,sample_count,avg_mean_intensity,avg_std_intensity,overall_min_intensity,overall_max_intensity
+Normal,1583,140.2,44.12,0.0,255.0
+Pneumonia,4273,147.55,34.41,0.0,255.0
