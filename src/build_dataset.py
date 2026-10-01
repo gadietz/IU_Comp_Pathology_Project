@@ -19,7 +19,6 @@ records = []
 for group in ["train", "val", "test"]: 
     images = data[f'{group}_images']
     labels = data[f'{group}_labels'].squeeze() #Flatten 2D array to 1D (had each result being its own list)
-    print(f"Processing group '{group}': {len(images)} images...")
 
     for idx, (img, label) in enumerate(zip(images, labels)):
 
@@ -45,4 +44,41 @@ for group in ["train", "val", "test"]:
             
 table_df = pd.DataFrame(records)
 
+#Validation
+print("\nDataset Validations")
+#1.	Number of images in each split.
+print("\nNumber of images in each split")
+print(table_df['split'].value_counts().to_string())
+#2.	Allowed label values.
+print("\nUnique Label Values: (should be only 0 and 1)")
+print(set(table_df['label'].unique()))
+#3.	Image dimensions.
+print("\nImage Dimensions")
+print(table_df[['width', 'height']].drop_duplicates().to_string())
+#4.	Missing or invalid values.
+print("\nMissing/Null Value")
+null_counts = table_df.isnull().sum().sum()
+print("Total null/missing values:", null_counts)
+#5.	Images with unusually low pixel variance.
+print("\nLow Pixel Variance (std_intensity < 5.0):")
+low_var = table_df[table_df['std_intensity'] < 5.0]
+print("Images with std_intensity < 5.0:", len(low_var))
+#6.	Whether exact duplicate images occur.
+print("\nExact Duplicate Detection (by SHA-256 hash):")
+duplicate_hashes = table_df[table_df.duplicated(subset=['image_hash'], keep=False)]
+unique_duplicates = duplicate_hashes['image_hash'].nunique()
+print(f"Total duplicate image instances: {len(duplicate_hashes)}")
+print(f"Unique duplicate image content hashes: {unique_duplicates}")
+
+
+DB_PATH = './output/metadata.db'
+PARQUET_PATH = './output/metadata.parquet'
+
+#Save to SQLite
+conn = sqlite3.connect(DB_PATH)
+table_df.to_sql('image_metadata', conn, if_exists='replace', index=False)
+conn.close()
+
+# Save to Parquet
+table_df.to_parquet(PARQUET_PATH, index=False)
 

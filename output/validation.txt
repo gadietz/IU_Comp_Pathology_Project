@@ -1,0 +1,25 @@
+
+Dataset Validations
+
+Number of images in each split
+split
+train    4708
+test      624
+val       524
+
+Unique Label Values: (should be only 0 and 1)
+{np.int64(0), np.int64(1)}
+
+Image Dimensions
+   width  height
+0     28      28
+
+Missing/Null Value
+Total null/missing values: 0
+
+Low Pixel Variance (std_intensity < 5.0):
+Images with std_intensity < 5.0: 0
+
+Exact Duplicate Detection (by SHA-256 hash):
+Total duplicate image instances: 56
+Unique duplicate image content hashes: 27
